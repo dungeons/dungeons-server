@@ -20,7 +20,7 @@ class socketCpp
 	public:
 		socketCpp();
 		void bind(int addr,int port);
-		connection* accept();
+		connection accept();
 		~socketCpp();
 	private:
 		sockaddr_in sock;

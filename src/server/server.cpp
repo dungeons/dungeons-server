@@ -6,10 +6,9 @@ server::server()
 	{
 		this->sock = new socketCpp();
 		this->sock->bind(INADDR_ANY,5000);
-		connection *p=this->sock->accept();
+		connection p=this->sock->accept();
 		while(1)
-			std::cout << p->read();
-		delete(p);
+			std::cout << p.read();
 	}catch (socketEx &e)
 	{
 		std::cout << e.what();

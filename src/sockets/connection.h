@@ -13,6 +13,7 @@ class connection
 		connection(int fd);
 		std::string read();
 		void write(std::string data);
+		~connection();
 	private:
 		int fd;
 		

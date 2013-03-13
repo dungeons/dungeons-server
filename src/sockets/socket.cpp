@@ -29,11 +29,9 @@ socketCpp::~socketCpp()
 	close(this->sockD);
 }
 
-connection* socketCpp::accept()
+connection socketCpp::accept()
 {
-	int desc=::accept(this->sockD,(struct sockaddr*)NULL, NULL);
-	std::cout << desc << std::endl;
-	return new connection(desc);
+	return connection(::accept(this->sockD,(struct sockaddr*)NULL, NULL));
 }
 
 socketEx::socketEx(std::string data)

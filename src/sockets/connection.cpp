@@ -5,6 +5,11 @@ connection::connection(int fd)
 	this->fd=fd;
 }
 
+connection::~connection()
+{
+	::close(this->fd);
+}
+
 std::string connection::read()
 {
 	char tmp[1024];
