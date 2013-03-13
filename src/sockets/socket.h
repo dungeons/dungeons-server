@@ -27,8 +27,6 @@ class socketCpp
 		int sockD;
 };
 
-
-
 class socketEx
 {
 	public:
