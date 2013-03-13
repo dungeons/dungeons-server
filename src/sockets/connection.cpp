@@ -20,6 +20,7 @@ std::string connection::read()
 
 void connection::write(std::string data)
 {
-	data+="";
-	
+	int ret =write(this->fd,data.c_str(),data.length());
+	if(ret!=data.length())
+		throw socketEx("Incomplete read");
 }
