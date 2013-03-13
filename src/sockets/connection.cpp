@@ -9,7 +9,7 @@ std::string connection::read()
 {
 	char tmp[1024];
 	int ret=recv(this->fd,tmp,1024,0);
-	if(ret <0)
+	if(ret <=0)
 		throw socketEx("Invalid Read");
 	std::string q;
 	for(int i=0;i<ret;i++)
