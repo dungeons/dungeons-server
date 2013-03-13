@@ -1,28 +1,31 @@
 COMPILER=g++
-PARAMS=-std=c++11 -pedantic -Wall -WExtrama -O0
+PARAMS=-std=c++11 -pedantic -Wall -Wextra -O0
 OUTPUTF=./build
 WIN=./buildWin
 SRC=./src
 
 all: modules server
 
-modules: $(OUTPUTF)/socket $(OUTPUTF)/connection
+modules: $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server
 
 $(OUTPUTF)/socket: $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
-	$(COMPILER) -o $@ -c $(SRC)/sockets/socket.cpp
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/sockets/socket.cpp
 
 $(OUTPUTF)/connection: $(SRC)/sockets/connection.cpp $(SRC)/sockets/connection.h
-	$(COMPILER) -o $@ -c $(SRC)/sockets/connection.cpp
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/sockets/connection.cpp
 
-server: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
-	$(COMPILER) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
+$(OUTPUTF)/server: $(SRC)/server/server.cpp $(SRC)/server/server.h
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/server/server.cpp
+	
+server: main.cpp $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h $(SRC)/sockets/connection.cpp $(SRC)/sockets/connection.h $(SRC)/server/server.cpp $(SRC)/server/server.h
+	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server
 
 .PHONY: clean
 
 win: modules $(WIN)/server.exe
 
 $(WIN)/server.exe: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
-	$(COMPILER) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
+	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
 
 
 clean:

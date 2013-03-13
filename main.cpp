@@ -3,16 +3,12 @@
 #include "./main.h"
 #include <iostream>
 
-#include "./src/sockets/socket.h"
-
 int main()
 {
-	socketCpp q;
+	server S;
 	try
 	{
-		q.bind(INADDR_ANY,5000);
-		connection *p=q.accept();
-		delete(p);
+		S.run();
 	}catch(socketEx &e)
 	{
 		std::cout <<e.what();

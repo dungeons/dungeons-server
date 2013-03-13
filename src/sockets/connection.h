@@ -3,6 +3,10 @@
 
 #include <string>
 
+#include <sys/socket.h>
+
+class sockEx;
+
 class connection
 {
 	public:
@@ -14,4 +18,5 @@ class connection
 		
 };
 
+#include "./socket.h"
 #endif // CONNECTION_H

@@ -1,16 +1,6 @@
 #include "socket.h"
 
 
-
-/*
-	this->SocketDescriptor= socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	memset(&this->ServerSock, 0, sizeof(this->ServerSock));
-	this->ServerSock.sin_family = AF_INET;
-	this->ServerSock.sin_addr.s_addr = htonl(INADDR_ANY);
-	this->ServerSock.sin_port = htons(COMPORT);
-	memset(&(this->ServerSock.sin_zero),0,8);
-*/
-
 socketCpp::socketCpp()
 {
 	this->sockD= ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -20,8 +10,8 @@ socketCpp::socketCpp()
 }
 void socketCpp::bind(int addr,int port)
 {
-	this->sock.sin_addr.s_addr = htonl(INADDR_ANY);
-	this->sock.sin_port = htons(5000);
+	this->sock.sin_addr.s_addr = htonl(addr);
+	this->sock.sin_port = htons(port);
 	memset(&(this->sock.sin_zero),0,8);
 	if(this->sockD<0)
 		throw new socketEx("sockFD");

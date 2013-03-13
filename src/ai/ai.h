@@ -3,6 +3,8 @@
 
 class ai
 {
+	public:si();
+	private:
 };
-
+	
 #endif // AI_H
