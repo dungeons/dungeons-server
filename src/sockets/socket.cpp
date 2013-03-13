@@ -11,17 +11,17 @@
 	memset(&(this->ServerSock.sin_zero),0,8);
 */
 
-socket::socket()
+socketCpp::socketCpp()
 {
 	this->sockD= ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	memset(&this->sock, 0, sizeof(this->sock));
 	this->sock.sin_family = AF_INET;
 	
 }
-void socket::bind(int addr,int port)
+void socketCpp::bind(int addr,int port)
 {
 	this->sock.sin_addr.s_addr = htonl(INADDR_ANY);
-	this->sock.sin_port = htons(port);
+	this->sock.sin_port = htons(5000);
 	memset(&(this->sock.sin_zero),0,8);
 	if(this->sockD<0)
 		throw new socketEx("sockFD");
@@ -30,12 +30,19 @@ void socket::bind(int addr,int port)
 		throw new socketEx("Error changing socket option");
 	if(::bind(this->sockD,(sockaddr*)&(this->sock),sizeof(sockaddr_in)))
 		throw new socketEx("Error binding");
+	listen(this->sockD,5);
 }
 
 
-connection* socket::accept()
+socketCpp::~socketCpp()
 {
-	int desc=::accept(this->sockD,(struct sockaddr*)NULL, NULL);;
+	close(this->sockD);
+}
+
+connection* socketCpp::accept()
+{
+	int desc=::accept(this->sockD,(struct sockaddr*)NULL, NULL);
+	std::cout << desc << std::endl;
 	return new connection(desc);
 }
 

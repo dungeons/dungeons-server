@@ -9,7 +9,6 @@ class connection
 		connection(int fd);
 		std::string read();
 		void write(std::string data);
-
 	private:
 		int fd;
 		

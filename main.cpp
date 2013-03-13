@@ -7,12 +7,14 @@
 
 int main()
 {
+	socketCpp q;
 	try
 	{
-		throw socketEx("ASD",__FILE__,__LINE__);
-	}catch(socketEx e)
+		q.bind(INADDR_ANY,5000);
+		connection *p=q.accept();
+		delete(p);
+	}catch(socketEx &e)
 	{
-		std::cout << e.what();
+		std::cout <<e.what();
 	}
-	std::cout  << "OK";
 }

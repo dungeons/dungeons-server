@@ -2,8 +2,9 @@
 #define SOCKET_H
 
 #include <string>
-
 #include <sstream>
+
+#include <iostream>
 
 #include "connection.h"
 
@@ -14,13 +15,13 @@
 #include <unistd.h>
 #include <semaphore.h>
 
-class socket
+class socketCpp
 {
 	public:
-		socket();
+		socketCpp();
 		void bind(int addr,int port);
 		connection* accept();
-		~socket();
+		~socketCpp();
 	private:
 		sockaddr_in sock;
 		int sockD;
