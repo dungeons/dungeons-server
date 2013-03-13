@@ -21,5 +21,4 @@ server: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
 clean:
 	@rm -f ./server
 	@rm -f ./build/*
-	@rm -f ./*~
-	@rm -f ./src/sockets/*~
+	@find -type f -regex ".*~$$" -delete
