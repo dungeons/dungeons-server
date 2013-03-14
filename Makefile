@@ -6,7 +6,11 @@ SRC=./src
 
 all: modules server
 
-modules: $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server
+modules: $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OUTPUTF)/socketEX $(OUTPUTF)/filter
+
+#socket exception
+$(OUTPUTF)/socketEX: $(SRC)/sockets/sockex.cpp $(SRC)/sockets/sockex.h
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/sockets/sockex.cpp
 
 $(OUTPUTF)/socket: $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
 	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/sockets/socket.cpp
@@ -16,16 +20,20 @@ $(OUTPUTF)/connection: $(SRC)/sockets/connection.cpp $(SRC)/sockets/connection.h
 
 $(OUTPUTF)/server: $(SRC)/server/server.cpp $(SRC)/server/server.h
 	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/server/server.cpp
-	
-server: main.cpp $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h $(SRC)/sockets/connection.cpp $(SRC)/sockets/connection.h $(SRC)/server/server.cpp $(SRC)/server/server.h
-	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server
+
+$(OUTPUTF)/filter: $(SRC)/filter/filter.cpp $(SRC)/filter/filter.h
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/filter/filter.cpp
+
+server: main.cpp  $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OUTPUTF)/socketEX $(OUTPUTF)/filter
+	$(COMPILER) $(PARAMS) -o $@ $^
 
 .PHONY: clean
 
-win: modules $(WIN)/server.exe
 
-$(WIN)/server.exe: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
-	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
+#win: modules $(WIN)/server.exe
+#
+#$(WIN)/server.exe: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
+#	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
 
 
 clean:

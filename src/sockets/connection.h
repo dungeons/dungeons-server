@@ -4,14 +4,16 @@
 #include <string>
 
 #include <sys/socket.h>
+#include "./sockex.h"
 
-class sockEx;
+
+#include <unistd.h>
 
 class connection
 {
 	public:
 		connection(int fd);
-		std::string read();
+		std::string read(int max);
 		void write(std::string data);
 		~connection();
 	private:
@@ -19,5 +21,4 @@ class connection
 		
 };
 
-#include "./socket.h"
 #endif // CONNECTION_H

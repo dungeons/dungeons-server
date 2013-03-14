@@ -1,6 +1,9 @@
 #ifndef SOCKEX_H
 #define SOCKEX_H
 
+#include <iostream>
+#include <sstream>
+
 class socketEx
 {
 	public:

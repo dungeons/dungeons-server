@@ -8,7 +8,7 @@ server::server()
 		this->sock->bind(INADDR_ANY,5000);
 		connection p=this->sock->accept();
 		while(1)
-			std::cout << p.read();
+			std::cout << p.read(20);
 	}catch (socketEx &e)
 	{
 		std::cout << e.what();

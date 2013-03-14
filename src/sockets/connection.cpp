@@ -10,16 +10,13 @@ connection::~connection()
 	::close(this->fd);
 }
 
-std::string connection::read()
+std::string connection::read(int max)
 {
 	char tmp[1024];
-	int ret=recv(this->fd,tmp,1024,0);
+	int ret=recv(this->fd,tmp,max,0);
 	if(ret <=0)
 		throw socketEx("Invalid Read");
-	std::string q;
-	for(int i=0;i<ret;i++)
-		q+=tmp[i];
-	q=tmp;
+	std::string q(tmp,ret);
 	return q;
 }
 

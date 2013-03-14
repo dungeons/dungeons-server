@@ -3,8 +3,10 @@
 #include "./main.h"
 #include <iostream>
 
+#include "./src/filter/filter.h"
 int main()
 {
+	filter Q;
 	server S;
 	try
 	{

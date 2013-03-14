@@ -7,13 +7,13 @@
 #include <iostream>
 
 #include "connection.h"
+#include "sockex.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <memory.h>
 #include <unistd.h>
-#include <semaphore.h>
 
 class socketCpp
 {
@@ -26,23 +26,5 @@ class socketCpp
 		sockaddr_in sock;
 		int sockD;
 };
-
-class socketEx
-{
-	public:
-		socketEx(std::string data);
-		socketEx(std::string data, const char* file, int line);
-		std::string what();
-	protected:
-		std::string data;
-};
-
-class socketWarn: private socketEx
-{
-	public:
-		socketWarn(std::string data);
-};
-
-
 
 #endif // SOCKET_H
