@@ -35,13 +35,6 @@ server: main.cpp  $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OU
 
 .PHONY: clean
 
-
-#win: modules $(WIN)/server.exe
-#
-#$(WIN)/server.exe: main.cpp  $(SRC)/sockets/socket.cpp $(SRC)/sockets/socket.h
-#	$(COMPILER) $(PARAMS) -o $@ main.cpp $(OUTPUTF)/socket $(OUTPUTF)/connection
-
-
 clean:
 	@rm -f ./server
 	@rm -f ./build/*

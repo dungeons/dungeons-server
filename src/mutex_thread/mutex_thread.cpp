@@ -27,13 +27,18 @@ void mutex_thread::mutex_thread::stop()
 {
 	this->running=0;
 	this->mux.unlock();
+	this->thread->join();
+	delete this->thread;
 }
 
 void mutex_thread::mutex_thread::change_sleep_time(unsigned int usec)
 {
 	this->sleep_time=usec;
 }
-
+/*
+ * only for runnig that fucking function
+ * 
+ */
 void mutex_thread::mutex_thread::run(mutex_thread* mx)
 {
 	mx->do_job();

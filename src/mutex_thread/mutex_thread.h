@@ -33,6 +33,7 @@ namespace mutex_thread
 			void change_sleep_time(unsigned int usec);
 			static void run(mutex_thread *mx);
 		protected:
+			
 			void do_job();
 			std::thread *thread;
 			unsigned int sleep_time;
