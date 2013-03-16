@@ -6,7 +6,7 @@ SRC=./src
 
 all: modules server
 
-modules: $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OUTPUTF)/socketEX $(OUTPUTF)/filter
+modules: $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OUTPUTF)/socketEX $(OUTPUTF)/filter $(OUTPUTF)/mutex_thread $(OUTPUTF)/logger
 
 #socket exception
 $(OUTPUTF)/socketEX: $(SRC)/sockets/sockex.cpp $(SRC)/sockets/sockex.h
@@ -23,6 +23,12 @@ $(OUTPUTF)/server: $(SRC)/server/server.cpp $(SRC)/server/server.h
 
 $(OUTPUTF)/filter: $(SRC)/filter/filter.cpp $(SRC)/filter/filter.h
 	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/filter/filter.cpp
+
+$(OUTPUTF)/mutex_thread: $(SRC)/mutex_thread/mutex_thread.cpp $(SRC)/mutex_thread/mutex_thread.h
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/mutex_thread/mutex_thread.cpp
+
+$(OUTPUTF)/logger: $(SRC)/logger/logger.cpp $(SRC)/logger/logger.h
+	$(COMPILER) $(PARAMS) -o $@ -c $(SRC)/logger/logger.cpp
 
 server: main.cpp  $(OUTPUTF)/socket $(OUTPUTF)/connection $(OUTPUTF)/server $(OUTPUTF)/socketEX $(OUTPUTF)/filter
 	$(COMPILER) $(PARAMS) -o $@ $^
