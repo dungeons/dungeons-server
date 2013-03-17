@@ -4,6 +4,7 @@ mutex_thread::mutex_thread::mutex_thread(unsigned int usec)
 {
 	this->sleep_time=usec;	
 }
+
 mutex_thread::mutex_thread::mutex_thread()
 {
 	this->sleep_time=400000;
@@ -15,6 +16,7 @@ void mutex_thread::mutex_thread::pause()
 {
 	this->mux.lock();
 }
+
 void mutex_thread::mutex_thread::start()
 {
 	this->running=1;
@@ -27,14 +29,18 @@ void mutex_thread::mutex_thread::stop()
 {
 	this->running=0;
 	this->mux.unlock();
-	this->thread->join();
-	delete this->thread;
+	if(this->thread!=nullptr)
+	{
+		this->thread->join();
+		delete this->thread;
+		this->thread=nullptr;
+	}
 }
-
 void mutex_thread::mutex_thread::change_sleep_time(unsigned int usec)
 {
 	this->sleep_time=usec;
 }
+
 /*
  * only for runnig that fucking function
  * 
@@ -43,4 +49,3 @@ void mutex_thread::mutex_thread::run(mutex_thread* mx)
 {
 	mx->do_job();
 }
-

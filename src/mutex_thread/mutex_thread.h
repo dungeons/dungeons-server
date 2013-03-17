@@ -27,14 +27,13 @@ namespace mutex_thread
 		public:
 			mutex_thread();
 			mutex_thread(unsigned int usec);
-			void start();
-			void stop();
-			void pause();
+			virtual void start() final;
+			virtual void stop() final;
+			virtual void pause() final;
 			void change_sleep_time(unsigned int usec);
 			static void run(mutex_thread *mx);
 		protected:
-			
-			void do_job();
+			virtual void do_job()=0;
 			std::thread *thread;
 			unsigned int sleep_time;
 			bool running;
