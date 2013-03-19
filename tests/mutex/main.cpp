@@ -22,6 +22,6 @@ void Q::do_job()
 int main()
 {
 	Q a;
-	a.start();
+	a();
 	a.stop();
 }

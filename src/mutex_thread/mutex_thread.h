@@ -25,8 +25,14 @@ namespace mutex_thread
 	class mutex_thread
 	{
 		public:
+			inline void operator()()
+			{
+				this->start();
+			};
+		public:
 			mutex_thread();
 			mutex_thread(unsigned int usec);
+			mutex_thread(mutex_thread &m) =delete;
 			virtual void start() final;
 			virtual void stop() final;
 			virtual void pause() final;

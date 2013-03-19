@@ -13,7 +13,8 @@ class connection
 {
 	public:
 		connection(int fd);
-		std::string* read(int max);
+		std::string read(int max);
+		std::string read_prec(int max);
 		void write(std::string &data);
 		~connection();
 	private:
