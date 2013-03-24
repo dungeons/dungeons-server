@@ -63,7 +63,7 @@ socketCpp::~socketCpp()
 		close(this->sock_d);
 }
 
-connection socketCpp::accept()
+connection* socketCpp::accept()
 {
-	return connection(::accept(this->sock_d,(struct sockaddr*)NULL, NULL));
+	return new connection(::accept(this->sock_d,(struct sockaddr*)NULL, NULL));
 }

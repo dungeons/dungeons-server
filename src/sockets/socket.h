@@ -30,8 +30,9 @@ class socketCpp
 		void bind(int addr,int port);
 		void bind(int addr,int port,int connections);
 		void connect(std::string addr, int port);
-		connection accept();
+		connection* accept();
 	private:
+		int accept_old();
 		sockaddr_in sock;
 		int sock_d;
 		void prepare();

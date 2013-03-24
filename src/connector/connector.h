@@ -4,7 +4,11 @@
 class connector
 {
 	public:
+		connector();
+		connector(connector &);
+		
 	private:
+		
 };
 
 #endif // CONNECTOR_H

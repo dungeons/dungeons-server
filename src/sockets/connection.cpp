@@ -1,12 +1,13 @@
 #include "connection.h"
 
-connection::connection(int fd)
+connection::connection(int fd) : fd(fd)
 {
-	this->fd=fd;
 }
+
 
 connection::~connection()
 {
+	
 	::close(this->fd);
 }
 

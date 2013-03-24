@@ -25,7 +25,7 @@ namespace mutex_thread
 	class mutex_thread
 	{
 		public:
-			inline void operator()()
+			virtual void operator()()
 			{
 				this->start();
 			};
