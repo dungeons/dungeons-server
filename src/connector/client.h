@@ -1,15 +1,14 @@
 #ifndef CLIENT_DATA_H
 #define CLIENT_DATA_H
 
-#include "../sockets/connection.h"
+#include "../component/component.h"
 
 class client_data
 {
 	public:
-		client_data(connection con,int id);
+		
 	private:
-		connection con;
-		int id;
+		component* components[components::max];
 };
 
 #endif // CLIENT_DATA_H

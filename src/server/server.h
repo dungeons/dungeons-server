@@ -1,8 +1,8 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "../sockets/socket.h"
 #include "../client/client.h"
+#include "../sockets/socket.h"
 #include "../connector/connector.h"
 
 class server

@@ -1,6 +1,6 @@
 COMPILER=g++
 #PARAMS=-std=c++11 -pedantic -Wall -Wextra -O0
-PARAMS=-std=c++11 -pedantic -Wall -Wextra -O0 -fno-inline
+PARAMS=-std=c++11 -pedantic -Wall -Wextra -O0 -fno-inline -g
 
 OUTPUTF=./build
 WIN=./buildWin

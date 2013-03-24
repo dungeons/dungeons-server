@@ -16,6 +16,7 @@ std::string protocol::propery_data(int id, int component, int property, int val)
 	return tmp;
 }
 
+//TODO change it!
 std::string protocol::prepare_2int(int data)
 {
 	std::string tmp;
@@ -24,10 +25,11 @@ std::string protocol::prepare_2int(int data)
 		tmp+=(char) data%256;
 		data=(data-(data%256))/256;
 	}
-	return tmp;
+	return std::string(tmp.rbegin(),tmp.rend());
 }
 
 
+//TODO change it!
 std::string protocol::prepare_4int(int data)
 {
 	std::string tmp;
@@ -36,5 +38,5 @@ std::string protocol::prepare_4int(int data)
 		tmp+=(char) data%256;
 		data=(data-(data%256))/256;
 	}
-	return tmp;
+	return std::string(tmp.rbegin(),tmp.rend());
 }

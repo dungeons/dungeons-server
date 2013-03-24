@@ -19,7 +19,7 @@ void client::do_job()
 		try{
 			protocol p;
 			std::string tmp;
-			tmp=p.propery_data(1,1,1,1);
+			tmp+=p.propery_data(0,0,0,1000);
 			this->c.write(tmp);
 			std::string c=this->c.read_prec(14);
 		}catch (socketEx &e)
